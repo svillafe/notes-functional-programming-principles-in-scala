@@ -243,6 +243,11 @@ will lead to an infinite loop, becuase it evaluate and execute a infinite loop.
 
 
 
+##1.5 Implementation in Scala
+
+One pecularity of Scala is that the return type of a recursive function is needed to be always given. The reason for that is that in order to compute the return type, the Scala compiler will have to look at the right-hand side and because the function is recursive, it stacked in a cycle.
+To break the cycle, we require that recursive functions must always has explicit return types. 
+
 
 
 
