@@ -291,6 +291,16 @@ The problem arise when expression are too long to fix on one line. There are two
 
 
 
+##1.7 Tail Recursion  
+
+**Evaluating a Function Application:**
+One evaluates a function application f(e1, e2, e3, ..., en) 
+
+* by evaluating the expressions e1, ..., en resulting in the values v1, ... , vn, then 
+* by replacing the application with the body of the function f, in which 
+* the actual parameter v1, ... ,vn replace teh formal parameters of f
+
+
 
 
 
