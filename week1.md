@@ -82,16 +82,85 @@ A **functional programming language**, is one whici does not have mutable variab
 Recomended books: 
   * [Structure and Interpretation of Computer Programs](https://www.amazon.co.uk/Structure-Interpretation-Computer-Electrical-Engineering/dp/0262510871)
   * [Programming in Scala](https://www.amazon.co.uk/Programming-Scala-Martin-Odersky/dp/0981531687/ref=sr_1_1?s=books&ie=UTF8&qid=1475074139&sr=1-1&keywords=Programming+in+Scala)
+  
+***
+
+##1. 2 Elements of Programming
+
+Every **non-trivial language** provides primitive: 
+* expressions that represents the simplest elements of the language
+* some ways to combine expressions
+* ways to abstract expressions. Abstraction means that we introduce a name for an expression and then further on we can reference the expression by its name. 
+
+**REPL (Read-Eval-Print-Loop):**
+ * The interactive shell lets one to write expressions and respond with their value.  
+ * The Scala REPL can be started by typing `scala` if you have a regular distribution of Scala. In case you installed `sbt`, you can run the command `sbt console`. 
+ 
+*** 
+
+**Evaluation:**
+ 
+A non-primitive expression is evaluated as follows:
+ 
+1. Take the leftmost operator (subject to the rules of presedent)
+2. Evaluate its operands (left before right)
+3. Apply the operator to the operands
+ 
+A name is evaluated by replacing it with the right hand side of its definition.
+The evaluation process stops once it results in a value.
+
+E.g.: 
+
+(2 * pi) * radius
+*(First we look for the pi number)*
+
+(2 * 3.14159) * radius
+*(Second we perform the arithmetic operation on the left)*
+
+(6.28318) * radius
+*(Third the variable is replaced)*
+
+(6.28318) * 10
+*(Finally we perform the final arithmetic operation)*
+62.8318
+
+***
+
+**Definitions:**
+
+Definitions can have parameters:
+
+`scala> def square(x : Double) = x * x`
+
+The functions parameter comes with their type which is given after a colon:
+
+`def power(x: Double, y:Int): Double = ...`
+
+If a return type is given it follows the parameter list.
+
+**Evaluation of Function Applications:**
+
+1. Evaluate all function arguments, from left to right
+2. Replace the function application by the function's right hand side, and, at the same time 
+3. Replace the formal parameters of the function by the actual arguments
+
+This scheme of expression evaluation is called the **substitution model**. 
+
+The idea underlying this model is that all evaluation does is **reduce an expression to a value**. 
+
+It can be applied to all expressions, **as long as they have no side effects**.
+
+The substitution model is formalized in the lambda calculus, which gives the foundation for functional programming.
+
+**Ways of evaluation:**
+
+There are two ways of evaluating the same expression: *call-by-value* and *call-by-name*. **call-by-value** has the advantage that it evaluates every function argument only once. On the other hand, **call-by-name** has the advantage that a function argument is not evaluated is the corresponding parameter is unused in the evaluation of the function body.
+
+Both strategies reduce to the final value as long as: 
+*the reduce expression consists of pure functions
+*both evaluations terminate
 
 
 
 
-
-
-
-
-
-
-
-
-
+ 
