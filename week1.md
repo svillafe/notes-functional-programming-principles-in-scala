@@ -162,5 +162,18 @@ Both strategies reduce to the final value as long as:
 
 
 
+##1. 3 Evaluation Strategies and Termination
+
+Both **call-by-name** (CBN) and **call-by-value** (CBV) reduce to the same value as long as both evaluations terminate. Let's analyze the case where termination is not guaranteed.
+
+There is a theorem that says:
+> If CBV of an expression *e* terminates, then (=>) the CBN evaluation of *e* terminates too. The other direction is not true.
+
+**Scala's evaluation strategy:**
+
+Scala normally uses **call-by-value**. I practice CBV is more performance than CBN, because it avoids this repeated re-computation of argumentsthat is done by CBN. In addition, CBV behaves better and is more predictable in a mix context of imperative and functional programming like Scala. Nevertheless, if the type of a function parameter starts *=>*, it uses call-by-name.
+
+
+
 
  
