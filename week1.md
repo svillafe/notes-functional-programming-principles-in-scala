@@ -130,11 +130,15 @@ E.g.:
 
 Definitions can have parameters:
 
-`scala> def square(x : Double) = x * x`
+```scala
+scala> def square(x : Double) = x * x
+```
 
 The functions parameter comes with their type which is given after a colon:
 
-`def power(x: Double, y:Int): Double = ...`
+```scala
+def power(x: Double, y:Int): Double = ...
+```
 
 If a return type is given it follows the parameter list.
 
@@ -172,7 +176,72 @@ There is a theorem that says:
 
 **Scala's evaluation strategy:**
 
-Scala normally uses **call-by-value**. I practice CBV is more performance than CBN, because it avoids this repeated re-computation of argumentsthat is done by CBN. In addition, CBV behaves better and is more predictable in a mix context of imperative and functional programming like Scala. Nevertheless, if the type of a function parameter starts *=>*, it uses call-by-name.
+Scala normally uses **call-by-value**. In practice CBV is more performance than CBN, because it avoids this repeated re-computation of argumentsthat is done by CBN. In addition, CBV behaves better and is more predictable in a mix context of imperative and functional programming like Scala. Nevertheless, if the type of a function parameter starts *=>*, it uses call-by-name.
+
+##1. 4 Conditionals and Value Definitions
+
+**Conditionals Expressiona**
+
+Scala has a conditional expression `if-else`
+
+The Scala's `if-else` looks like the Java's one, but is **used for expressions not statements**.
+
+For example:
+
+```scala
+   def abs(x:Int) = if (x >= 0) x else -x
+```
+In the example above we can see that the `if-else` is an expression, it is not an statement where you have to set a variable and then return a variable. The `x>=0` is a expression of type `Boolean` and that expression is sometime called predicate.
+
+**Boolean Expressions**
+
+```scala
+true false //Constants
+!n         //Negation
+a && b     //Conjuction
+a || b     //Disjunction
+a <= b, a < b, etc //comparison operations
+```
+
+In general if a expression is legal in Java, you can expect that is going to be legal in Scala as well.
+
+In the evaluation process, note that `&&` and `||` do not always need their right operand to be evaluated.
+
+**Value definitions**
+
+The function parameters can be passed **by value** or **by name** and the same distinction applies to *definition*. 
+
+The **def** form is called **by-name** because *its right hand side is evaluated on each use*. 
+
+There is also a **val** form which is **by-value**. In other words, *the right-hand side of a val definition is evaluated at the point of the definition itself*.
+
+For example:
+
+```scala
+val x = 2
+val y = square(x)
+```
+In the example, **y** refers to 4, not to the expression *square(2)*.
+
+The different between **def** and **val** becomes apparent when the right hand does not terminate. 
+
+Given:
+
+```scala
+def loop: Boolean = loop
+```
+
+A definition like:
+```scala
+def x = loop
+```
+will terminate becauhse we are given only a new name to loop, but
+```scala
+val x = loop
+```
+will lead to an infinite loop, becuase it evaluate and execute a infinite loop.
+
+
 
 
 
