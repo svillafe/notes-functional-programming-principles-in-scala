@@ -157,8 +157,9 @@ The substitution model is formalized in the lambda calculus, which gives the fou
 There are two ways of evaluating the same expression: *call-by-value* and *call-by-name*. **call-by-value** has the advantage that it evaluates every function argument only once. On the other hand, **call-by-name** has the advantage that a function argument is not evaluated is the corresponding parameter is unused in the evaluation of the function body.
 
 Both strategies reduce to the final value as long as: 
-*the reduce expression consists of pure functions
-*both evaluations terminate
+
+* the reduce expression consists of pure functions
+* both evaluations terminate
 
 
 
