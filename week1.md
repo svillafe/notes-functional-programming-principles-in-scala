@@ -248,6 +248,53 @@ will lead to an infinite loop, becuase it evaluate and execute a infinite loop.
 One pecularity of Scala is that the return type of a recursive function is needed to be always given. The reason for that is that in order to compute the return type, the Scala compiler will have to look at the right-hand side and because the function is recursive, it stacked in a cycle.
 To break the cycle, we require that recursive functions must always has explicit return types. 
 
+##1.6 Blocks and Lexical Scoping
+
+**Nested functions:**
+It is good style to split up a task into many small functions. Nevetheless all this sub functions only matter for the implementation of the task. **_We would not like users to access these functions directly._**. 
+
+One way to achieve this, is to put all the auxiliarly functions inside the main task definition. For example:
+
+```scala
+def task(x : Double) = {
+	def aux1(x : Double) = ???
+	def aux2 = ???
+
+	aux1(x)
+}
+```
+
+This is also known as **Blocks**. A block has the following properties: 
+* It is delimited by braces { ... } 
+* It contains a sequence of definitions or expressions.
+* The last element of a block is an expression that **defines its value**.
+* This return expression can be preceded by auxiliary definitions.
+* Blocks **are expressions**, a block may appear everywhere an expression can be used.
+
+**Blocks and visibility:**
+There are two main rules regarding visibility and blocks: 
+
+1- The definitions inside a block are only visible from within the block.
+
+2- The definitions inside a block _shadow_ definitions of the same names outside the block.
+
+**Semicolons:**
+
+In Scala the semicolons at the end of the line **are in most cases optional**. On the other hand, **if there are more than one statements on a line**, they need to be separated by semicolons. 
+
+The problem arise when expression are too long to fix on one line. There are two ways of overcome this problem:
+
+* You could write the multi-line expression in parentheses, because semicolons are never inserted inside (...)
+
+* You could write the operator on the first line, becuase it tells to the Scala compiler that the expression is not yet finished.
+
+
+
+
+
+
+
+
 
 
 
